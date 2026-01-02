@@ -1,8 +1,13 @@
 const express=require('express');
 const app=express();
 const router=require('./router/auth-router');
+const connectDB=require('./utils/db');
+app.use(express.json());
 app.use('/api/auth',router)
 const PORT=3000;
-app.listen(PORT,()=>{
-    console.log(`Server is running on port http://localhost:${PORT}`);
-});
+
+connectDB().then(()=>{
+    app.listen(PORT,()=>{
+        console.log(`Server is running on port http://localhost:${PORT}`);
+    });
+})

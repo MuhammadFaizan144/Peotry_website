@@ -8,7 +8,8 @@ const home=async (req,res) => {
 const register=async (req,res) => {
     // Registration logic here
     try {
-        res.status(201).send({message:"User registered successfully"})
+        console.log(req.body)
+        res.status(201).send({message:req.body})
     } catch (error) {
         res.status(500).send({message:"Internal Server Error"})
     }
