@@ -13,10 +13,10 @@ const register=async (req,res) => {
         const UserExists=await User.findOne({email})
 
         if(UserExists){
-            return res.status(400).send({message:"User already exists"})
+            return res.status(400).json({message:"User already exists"})
         }
-            const userCreated=await User.created({username,email,phone,password})
-            res.status(201).send({message:userCreated})
+            const userCreated=await User.create({username,email,phone,password})
+            res.status(201).json({message:userCreated})
     } catch (error) {
         res.status(500).send({message:"Internal Server Error"})
     }
