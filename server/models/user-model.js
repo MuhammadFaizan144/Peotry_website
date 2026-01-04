@@ -1,5 +1,6 @@
 
 const mongoose=require('mongoose');
+const bcrypt=require('bcryptjs')
 const userSchema=new mongoose.Schema({
     username:{
         type:String,
@@ -21,5 +22,22 @@ const userSchema=new mongoose.Schema({
         type:Boolean,default:false
     }
 })
+
+userSchema.pre('save',async function(next){
+    const user=this
+    if(!user.isModified('password')){
+        next()
+    }
+    try {
+        const salt=await bcrypt.genSalt(10)
+        const hash_password=await bcrypt.hash(user.password,salt)
+        user.password=hash_password
+    } catch (error) {
+        console.error('Error hashing password:', error);
+        next(error);
+    }
+})
+
+
 const User=new mongoose.model('User',userSchema);
 module.exports=User;
