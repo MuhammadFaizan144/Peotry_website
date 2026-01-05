@@ -1,4 +1,5 @@
 const User=require('../models/user-model')
+
 const home=async (req,res) => {
     try {
         res.status(200).send({message:"Welcome to the Poetry Project API"})
@@ -15,8 +16,19 @@ const register=async (req,res) => {
         if(UserExists){
             return res.status(400).json({message:"User already exists"})
         }
-            const userCreated=await User.create({username,email,phone,password})
-            res.status(201).json({message:userCreated})
+            const userCreated=await User.create({
+                username,
+                email,
+                phone,
+                password
+            })
+            res.status(201).json({
+                message:"registration successful",
+                token:await userCreated.generateToken(),
+                
+                userId:userCreated._id.toString()
+            })
+            console.log("JWT SECRET:", process.env.JWT_SECRET_KEY);
     } catch (error) {
         res.status(500).send({message:"Internal Server Error"})
     }
