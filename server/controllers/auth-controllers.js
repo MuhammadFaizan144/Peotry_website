@@ -28,7 +28,6 @@ const register=async (req,res) => {
                 
                 userId:userCreated._id.toString()
             })
-            console.log("JWT SECRET:", process.env.JWT_SECRET_KEY);
     } catch (error) {
         res.status(500).send({message:"Internal Server Error"})
     }
