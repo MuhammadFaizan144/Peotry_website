@@ -37,6 +37,12 @@ userSchema.pre('save',async function(next){
         next(error);
     }
 })
+
+//password comparison
+userSchema.methods.comparePassword=function(enteredPassword) {
+    return bcrypt.compare(enteredPassword,this.password)
+}
+
 //jsonwebtoken
 userSchema.methods.generateToken=async function(){
     try {

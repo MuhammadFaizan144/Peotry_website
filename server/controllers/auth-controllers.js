@@ -40,7 +40,9 @@ const login=async (req,res) => {
         if(!UserExists){
             return res.status(400).json({message:"User does not exist"})
         }
-        const user=await bcrypt.compare(password,UserExists.password)
+
+        const user=await UserExists.comparePassword(password)
+        
         if(user){
             res.status(200).json({
                 message:"Login Successful",
