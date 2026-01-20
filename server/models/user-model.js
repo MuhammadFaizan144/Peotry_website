@@ -22,7 +22,7 @@ const userSchema=new mongoose.Schema({
         type:Boolean,default:false
     }
 })
-
+//add pre-save hook to hash password
 userSchema.pre('save',async function(next){
     const user=this
     if(!user.isModified('password')){
