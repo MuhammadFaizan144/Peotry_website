@@ -53,7 +53,8 @@ const login=async (req,res) => {
             res.status(401).json({message:"Invalid Credentials"})
         }
     } catch (error) {
-        res.status(500).send({message:"Internal Server Error"})
+        // res.status(500).send({message:"Internal Server Error"})
+        next(error)
     }
 }
 module.exports={home,register,login}

@@ -26,7 +26,6 @@ const SignUpSchema=z.object({
     .max(1024,{message:"Password must be less than 1024 characters long"}),
 })
 const loginSchema=z.object({
-
     email:z
     .string({required_error:"Email is required"})
     .trim()
