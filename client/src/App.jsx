@@ -6,10 +6,12 @@ import Service from './pages/Service.jsx'
 import Register from './pages/Register.jsx'
 import Login from './pages/Login.jsx'
 import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom'
+import Navbar from './components/Navbar.jsx'
 const App = () => {
   return (
     <>
       <BrowserRouter>
+      <Navbar />
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/about' element={<About/>} />
