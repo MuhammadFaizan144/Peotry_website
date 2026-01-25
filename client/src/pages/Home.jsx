@@ -29,10 +29,7 @@ const Home = () => {
           <div className='Content-letters flex flex-col gap-2'>
             <p className='text-4xl italic font-serif'>Khudi ko itna buland kar ke har taqdeer se pehle,
               Khuda bande se khud poochay: bata teri raza kya hai.</p>
-            <div className="">
-              <button className='bg-red-500 text-white py-2 px-4 rounded mr-4 hover:bg-red-600 mt-4'>Read Poems</button>
-              <button className='bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300 mt-4'>Learn More</button>
-            </div>
+            
           </div>
         </div>
       </div>
