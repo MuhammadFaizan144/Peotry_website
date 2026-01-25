@@ -7,6 +7,7 @@ import Register from './pages/Register.jsx'
 import Login from './pages/Login.jsx'
 import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
+import Footer from './components/Footer.jsx'
 const App = () => {
   return (
     <>
@@ -20,6 +21,7 @@ const App = () => {
           <Route path='/register' element={<Register/>} />
           <Route path='/login' element={<Login/>} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </>
   )
