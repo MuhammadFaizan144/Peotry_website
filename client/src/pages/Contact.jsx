@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { signUpandLoginBG } from '../assets'
 
 const Contact = () => {
-  const[user,setUser]=useState({
+  const[contact,setContact]=useState({
     username:"",
     email:"",
     message:"",
@@ -12,14 +12,14 @@ const Contact = () => {
     let name=e.target.name
     let value=e.target.value
 
-    setUser({
-      ...user,
+    setContact({
+      ...contact,
       [name]:value
     })
   }
 const handleSubmit=(e)=>{
   e.preventDefault();
-  console.log(user)
+  console.log(contact)
 }
 
   return (
@@ -45,7 +45,7 @@ const handleSubmit=(e)=>{
           <div className="flex flex-col gap-1">
             <label>Username</label>
             <input
-            type="text" name="username" id='username' required autoComplete="off" placeholder='Enter Username' value={user.username} onChange={handleInput}
+            type="text" name="username" id='username' required autoComplete="off" placeholder='Enter Username' value={contact.username} onChange={handleInput}
               className="border px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -53,7 +53,7 @@ const handleSubmit=(e)=>{
           <div className="flex flex-col gap-1">
             <label>Email</label>
             <input
-              type="email" name="email" placeholder='Enter Email'  id='email' required autoComplete="off" value={user.email} onChange={handleInput}
+              type="email" name="email" placeholder='Enter Email'  id='email' required autoComplete="off" value={contact.email} onChange={handleInput}
               className="border px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -61,7 +61,7 @@ const handleSubmit=(e)=>{
             <label>Message</label>
             <textarea
               type="Message"
-              placeholder="Enter Your Message" name="message" id='message' required autoComplete="off"  value={user.message} onChange={handleInput}
+              placeholder="Enter Your Message" name="message" id='message' required autoComplete="off"  value={contact.message} onChange={handleInput}
               className="border px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
