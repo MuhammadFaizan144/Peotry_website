@@ -1,6 +1,6 @@
 import React from 'react'
 import { navLinks } from './navbardata.js'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const ResponsiveMenu = ({ open }) => {
   if (!open) return null
@@ -12,18 +12,18 @@ const ResponsiveMenu = ({ open }) => {
         <ul className="flex flex-col items-center justify-center gap-6">
           {navLinks.map((item) => (
             <li key={item.id}>
-              <Link
+              <NavLink
                 to={item.link}
                 className="inline-block py-1 px-3 hover:text-gray-300"
               >
                 {item.title}
-              </Link>
+              </NavLink>
               
             </li>
           ))}
           <li>
-          <button className='bg-red-500 text-white py-2 px-4 rounded mr-4 hover:bg-red-600'>Register</button>
-          <button className='bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300'>Login</button>
+          <NavLink to="/register"  className='bg-red-500 text-white py-2 px-4 rounded mr-4 hover:bg-red-600'>Register</NavLink>
+          <NavLink to="/login" className='bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300'>Login</NavLink>
         </li>
         </ul>
       </div>

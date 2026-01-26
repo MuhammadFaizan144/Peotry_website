@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {   PoetAbout ,poetsabout01} from '../assets/index.js'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 const About = () => {
   return (
     <>
@@ -14,7 +14,7 @@ const About = () => {
                   have a huge role in build pakistan and telling muslim about their origin of campions in the region british empire
                    </p>
                 <div className="">
-                  <Link to='/service' className='bg-red-500 text-white py-2 px-4 rounded mr-4 hover:bg-red-600 mt-4'>Read Poems</Link>
+                  <NavLink to='/service' className='bg-red-500 text-white py-2 px-4 rounded mr-4 hover:bg-red-600 mt-4'>Read Poems</NavLink>
                 </div>
               </div>
             </div>
