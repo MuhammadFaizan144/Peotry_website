@@ -5,6 +5,7 @@ import peotrycontent from './peotrycontent.jpg';
 import allama from './allama.png'
 import PoetAbout from './PoetAbout.png'
 import poetsabout01 from './poetsabout01.jpg'
+import signUpandLoginBG from './signUp&LoginBG.png'
 export {
   logo,
   close,
@@ -12,5 +13,6 @@ export {
   peotrycontent,
   allama,
   PoetAbout,
-  poetsabout01
+  poetsabout01,
+  signUpandLoginBG
 };

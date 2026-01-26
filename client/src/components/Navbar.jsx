@@ -34,8 +34,8 @@ const Navbar = () => {
           </div>
           {/* Register and login Section */}
           <div className='hidden md:block'>
-            <button className='bg-red-500 text-white py-2 px-4 rounded mr-4 hover:bg-red-600'>Register</button>
-            <button className='bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300'>Login</button>
+            <Link to='/register' className='bg-red-500 text-white py-2 px-4 rounded mr-4 hover:bg-red-600'>Register</Link>
+            <Link to='/login' className='bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300'>Login</Link>
           </div>
 
         </div>

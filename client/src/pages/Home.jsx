@@ -1,5 +1,6 @@
 import React from 'react'
 import { peotrycontent, allama } from '../assets/index.js'
+import { Link } from 'react-router-dom'
 const Home = () => {
   return (
     <>
@@ -10,7 +11,7 @@ const Home = () => {
             <p className='text-5xl italic font-serif'>Lafz wahi zinda hote hain jo rooh ko jaga dein, baqi sirf awaaz hoti hai.</p>
             <p className='font-serif'>Click below if you want to learn more about peotry</p>
             <div className="">
-              <button className='bg-red-500 text-white py-2 px-4 rounded mr-4 hover:bg-red-600 mt-4'>Read Poems</button>
+              <Link to='/service' className='bg-red-500 text-white py-2 px-4 rounded mr-4 hover:bg-red-600 mt-4'>Read Poems</Link>
               <button className='bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300 mt-4'>Learn More</button>
             </div>
           </div>
