@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { signUpandLoginBG } from '../assets'
+
 const Register = () => {
   const[user,setUser]=useState({
     username:"",
@@ -7,6 +8,7 @@ const Register = () => {
     phone:"",
     password:"",
   })
+
   const handleInput=(e)=>{
     console.log(e)
     let name=e.target.name
@@ -16,6 +18,7 @@ const Register = () => {
       [name]:value,
     })
   }
+
   const handleSubmit=(e)=>{
     e.preventDefault()
     console.log(e)
