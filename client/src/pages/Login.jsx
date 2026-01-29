@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { signUpandLoginBG } from '../assets'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const[user,setUser]=useState({
     email:"",
     password:"",
   })
+  const navigate=useNavigate()
   const handleInput=(e)=>{
     
     console.log(e)
@@ -28,7 +30,14 @@ const Login = () => {
         body:JSON.stringify(user),
       })
       console.log(response)
-      
+      if(response.ok){
+        setUser({
+          email:"",
+          password:"",
+        }
+      )
+      navigate('/')
+      }
     } catch (error) {
       console.log("login ",error)
     }

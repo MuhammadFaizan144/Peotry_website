@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { signUpandLoginBG } from '../assets'
-
+import { useNavigate } from 'react-router-dom'
 const Register = () => {
+  const navigate=useNavigate()
   const[user,setUser]=useState({
     username:"",
     email:"",
@@ -30,6 +31,15 @@ const Register = () => {
         },
         body:JSON.stringify(user),
       })
+      if(response.ok){
+        setUser(
+          {username:"",
+          email:"",
+          phone:"",
+          password:"",}
+        )
+        navigate('/');
+      }
       console.log(response)
     } catch (error) {
       console.log("Register Error",error)
