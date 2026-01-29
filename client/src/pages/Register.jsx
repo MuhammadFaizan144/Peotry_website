@@ -19,9 +19,21 @@ const Register = () => {
     })
   }
 
-  const handleSubmit=(e)=>{
+  const handleSubmit=async(e)=>{
     e.preventDefault()
     console.log(e)
+    try {
+      const response=await fetch(`http://localhost:3000/api/auth/register`,{
+        method:'POST',
+        headers:{
+          "Content-Type":"application/json",
+        },
+        body:JSON.stringify(user),
+      })
+      console.log(response)
+    } catch (error) {
+      console.log("Register Error",error)
+    }
   }
   return (
     <div className='relative h-screen w-full'>

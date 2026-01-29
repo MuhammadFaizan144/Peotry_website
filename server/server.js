@@ -5,10 +5,18 @@ const authRoute=require('./router/auth-router');
 const contactRoute=require('./router/contact-router')
 const connectDB=require('./utils/db');
 const errorMiddlware = require("./middleware/error-middleware");
+const cors=require('cors')
 
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+
+var corsOptions={
+    origin:"http://localhost:5173",
+    method:"Get, POST, PUT, DELETE, PATCH, HEAD",
+    credentials:true,
+};
+app.use(cors(corsOptions));
 
 app.use('/api/auth',authRoute)
 app.use('/api/form',contactRoute)
