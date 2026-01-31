@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 // import {NavbarMenu} from './NavbarMenu'
 // import {FaDumbbell} from 'react-icons/fa'
-import { MdMenu ,MdClose} from 'react-icons/md'
+import { MdMenu, MdClose } from 'react-icons/md'
 import ResponsiveMenu from './ResponsiveMenu.jsx'
 // import {CiSearch} from 'react-icons/ci'
 // import {PiShoppingCartThin} from 'react-icons/pi'
@@ -25,11 +25,19 @@ const Navbar = () => {
           {/* Menu Section */}
           <div className='hidden md:block'>
             <ul className='flex'>
-              {navLinks.map((item) => {
-                return <li key={item.id}>
-                  <NavLink to={item.link} className='inline-block py-1 px-3 hover:text-red-500 font-semibold' >{item.title}</NavLink>
-                </li>
-              })}
+              <li>
+                <NavLink to='/' className='inline-block py-1 px-3 hover:text-red-500 font-semibold' >Home</NavLink>
+              </li>
+              <li>
+                <NavLink to='/about' className='inline-block py-1 px-3 hover:text-red-500 font-semibold' >About</NavLink>
+              </li>
+              <li>
+                <NavLink to='/poems' className='inline-block py-1 px-3 hover:text-red-500 font-semibold' >Peom</NavLink>
+              </li>
+              <li>
+                <NavLink to='/contact' className='inline-block py-1 px-3 hover:text-red-500 font-semibold' >Contact</NavLink>
+              </li>
+
             </ul>
           </div>
           {/* Register and login Section */}
@@ -41,8 +49,8 @@ const Navbar = () => {
         </div>
         {/* Mobile hamburger menu section */}
         <div className='md:hidden absolute right-4 top-6' onClick={() => setOpen(!open)}>
-          {open ? <MdClose className='text-3xl  cursor-pointer ' />: <MdMenu className='text-3xl  cursor-pointer ' />}
-          
+          {open ? <MdClose className='text-3xl  cursor-pointer ' /> : <MdMenu className='text-3xl  cursor-pointer ' />}
+
         </div>
       </nav>
       <ResponsiveMenu open={open} />
