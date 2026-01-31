@@ -16,4 +16,5 @@ const validate=(schema)=>async(req,res,next)=>{
         next(error)
     }
 }
+
 module.exports=validate;

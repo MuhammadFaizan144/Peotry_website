@@ -16,6 +16,7 @@ var corsOptions={
     method:"Get, POST, PUT, DELETE, PATCH, HEAD",
     credentials:true,
 };
+
 app.use(cors(corsOptions));
 
 app.use('/api/auth',authRoute)
