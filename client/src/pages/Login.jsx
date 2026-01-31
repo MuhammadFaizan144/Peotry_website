@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { signUpandLoginBG } from '../assets'
 import { useNavigate } from 'react-router-dom'
-
+import { useAuth } from '../store/auth'
 const Login = () => {
   const[user,setUser]=useState({
     email:"",
     password:"",
   })
   const navigate=useNavigate()
+
+  const {storetokenInLS}=useAuth()
+  
   const handleInput=(e)=>{
     
     console.log(e)
@@ -31,12 +34,19 @@ const Login = () => {
       })
       console.log(response)
       if(response.ok){
+        const res_data=await response.json()
+        alert("Login Successfull")
+        console.log("res from server",res_data)
+        storetokenInLS(res_data.token)
         setUser({
+
           email:"",
           password:"",
         }
       )
       navigate('/')
+      }else{
+        console.log("Error in response")
       }
     } catch (error) {
       console.log("login ",error)

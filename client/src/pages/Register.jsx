@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { signUpandLoginBG } from '../assets'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../store/auth'
 const Register = () => {
   const navigate=useNavigate()
   const[user,setUser]=useState({
@@ -9,7 +10,7 @@ const Register = () => {
     phone:"",
     password:"",
   })
-
+  const {storetokenInLS}=useAuth()
   const handleInput=(e)=>{
     console.log(e)
     let name=e.target.name
@@ -32,6 +33,9 @@ const Register = () => {
         body:JSON.stringify(user),
       })
       if(response.ok){
+        const res_data=await response.json();
+        console.log("res from server",res_data)
+        storetokenInLS(res_data.token)
         setUser(
           {username:"",
           email:"",
