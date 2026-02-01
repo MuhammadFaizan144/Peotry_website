@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-rou
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import Error from './pages/Error.jsx'
+import Logout from './pages/Logout.jsx'
 const App = () => {
   return (
     <>
@@ -21,6 +22,7 @@ const App = () => {
           <Route path='/poems' element={<Poem/>} />
           <Route path='/register' element={<Register/>} />
           <Route path='/login' element={<Login/>} />
+          <Route path='/logout' element={<Logout/>}/>
           <Route path='*' element={<Error/>} />
         </Routes>
         <Footer/>

@@ -9,9 +9,11 @@ import ResponsiveMenu from './ResponsiveMenu.jsx'
 import { navLinks } from './navbardata.js'
 import { NavLink } from 'react-router-dom'
 import { logo, menu, close } from '../assets/index.js'
+import { useAuth } from '../store/auth.jsx'
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const {isLoggedIn}=useAuth()
   return (
     <>
       <nav>
@@ -42,8 +44,15 @@ const Navbar = () => {
           </div>
           {/* Register and login Section */}
           <div className='hidden md:block'>
+            {isLoggedIn?
+            <NavLink to='/logout' className='bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300'>Logout</NavLink>
+            :
+            <>
             <NavLink to='/register' className='bg-red-500 text-white py-2 px-4 rounded mr-4 hover:bg-red-600'>Register</NavLink>
             <NavLink to='/login' className='bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300'>Login</NavLink>
+            
+            </>
+            }
           </div>
 
         </div>
