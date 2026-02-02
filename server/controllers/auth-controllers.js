@@ -1,3 +1,4 @@
+const { json } = require('zod')
 const User=require('../models/user-model')
 const bcrypt=require('bcryptjs')
 const home=async (req,res) => {
@@ -57,4 +58,15 @@ const login=async (req,res) => {
         next(error)
     }
 }
-module.exports={home,register,login}
+
+
+const user =async(req,res)=>{
+    try {
+        const userData=req.user
+        console.log(userData)
+        res.status(200).json({message:userData})
+    } catch (error) {
+        console.log('error from user route ',error)
+    }
+}
+module.exports={home,register,login,user}
