@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { signUpandLoginBG } from '../assets'
+import { useAuth } from '../store/auth'
 
 const Contact = () => {
+  const {user}=useAuth()
   const[contact,setContact]=useState({
-    username:"",
-    email:"",
+    username:user.username,
+    email:user.email,
     message:"",
   })
   const handleInput=(e)=>{
@@ -17,9 +19,26 @@ const Contact = () => {
       [name]:value
     })
   }
-const handleSubmit=(e)=>{
+const handleSubmit=async(e)=>{
   e.preventDefault();
   console.log(contact)
+  try {
+    const response=await fetch(`http://localhost:3000/api/form/contact`,{
+      method:"POST",
+      headers:{
+        'Content-Type':'application/json',
+      },
+      body:JSON.stringify(user)
+    })
+    if(response.ok){
+      const data=await response.json()
+      console.log(data)
+      alert('message send successfully')
+    }
+  } catch (error) {
+    alert('message not send')
+    console.log('contact error ',error)
+  }
 }
 
   return (

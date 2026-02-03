@@ -4,7 +4,7 @@ import {   PoetAbout ,poetsabout01} from '../assets/index.js'
 import { NavLink } from 'react-router-dom'
 import { useAuth } from '../store/auth.jsx'
 const About = () => {
-  const {is}=useAuth()
+  const {user}=useAuth()
   return (
     <>
           {/* Peot Home */}
@@ -12,7 +12,7 @@ const About = () => {
             <div className="Content ">
               <div className='Content-letters flex flex-col gap-2'>
                 <h2 className='text-6xl font-semibold font-serif'>About</h2>
-                <p className='text-3xl italic font-serif'>Welcome {isLoggedIn?}. <br /> This website is all about Poetry. These poet are belongs to south asia and 
+                <p className='text-3xl italic font-serif'>Welcome , {user?user.username:`in our website`}. <br /> This website is all about Poetry. These poet are belongs to south asia and 
                   have a huge role in build pakistan and telling muslim about their origin of campions in the region british empire
                    </p>
                 <div className="">
