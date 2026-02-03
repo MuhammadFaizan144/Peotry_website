@@ -1,14 +1,26 @@
 import React, { useState } from 'react'
 import { signUpandLoginBG } from '../assets'
 import { useAuth } from '../store/auth'
-
 const Contact = () => {
-  const {user}=useAuth()
+
   const[contact,setContact]=useState({
-    username:user.username,
-    email:user.email,
+    username:"",
+    email:"",
     message:"",
   })
+
+  const[userData,setUserData]=useState(true)
+  const{user}=useAuth()
+
+  if(userData && user){
+    setContact({
+      username:user.username,
+      email:user.email,
+      message:"",
+    })
+    setUserData(false)
+  }
+
   const handleInput=(e)=>{
     console.log(e)
     let name=e.target.name
