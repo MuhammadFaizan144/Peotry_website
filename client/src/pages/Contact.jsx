@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { signUpandLoginBG } from '../assets'
 import { useAuth } from '../store/auth'
-const Contact = () => {
-
-  const[contact,setContact]=useState({
+const defaultContactFormData={
     username:"",
     email:"",
     message:"",
-  })
+}
+const Contact = () => {
+
+  const[contact,setContact]=useState(defaultContactFormData)
 
   const[userData,setUserData]=useState(true)
   const{user}=useAuth()
@@ -40,9 +41,10 @@ const handleSubmit=async(e)=>{
       headers:{
         'Content-Type':'application/json',
       },
-      body:JSON.stringify(user)
+      body:JSON.stringify(contact)
     })
     if(response.ok){
+      setContact(defaultContactFormData)
       const data=await response.json()
       console.log(data)
       alert('message send successfully')
