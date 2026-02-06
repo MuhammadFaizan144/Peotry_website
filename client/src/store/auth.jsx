@@ -4,6 +4,7 @@ export const AuthContext=createContext();
 export const AuthProvider=({children})=>{
     const [token,setToken]=useState(localStorage.getItem('token'))
     const[user,setUser]=useState('')
+    const[services,setServices]=useState("")
 
     const storetokenInLS=(serverToken)=>{
         return localStorage.setItem('token',serverToken)
@@ -39,11 +40,30 @@ export const AuthProvider=({children})=>{
     }
 
 
+    const getServices=async () => {
+        try {
+            const response=await fetch(`http://localhost:3000/api/data/poem`,{
+                method:'GET',
+                
+                
+            })
+            if(response.ok){
+                const data=await response.json()
+                console.log(data.msg)
+                setServices(data.msg)
+            }
+        } catch (error) {
+            console.log('Poem frontend ',error)
+        }
+    }
+
+
     useEffect(()=>{
+        getServices()
         userAuthentication()
     },[])
 
-    return <AuthContext.Provider value={{storetokenInLS,LogoutUser,isLoggedIn,user}}>
+    return <AuthContext.Provider value={{storetokenInLS,LogoutUser,isLoggedIn,user,services}}>
         {children}
     </AuthContext.Provider>
 }
