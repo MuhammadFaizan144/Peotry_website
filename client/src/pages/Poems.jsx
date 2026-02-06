@@ -4,7 +4,7 @@ const Service = () => {
   return (
     <>
       <section className="px-6 md:px-20 py-16 bg-gray-50">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto flex flex-col gap-20">
           
           <div className="relative bg-white rounded-2xl shadow-xl p-10 border-l-8 border-red-900">
             
@@ -26,6 +26,9 @@ const Service = () => {
             </p>
 
           </div>
+
+              
+          
 
         </div>
       </section>
