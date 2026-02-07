@@ -1,7 +1,8 @@
 const express=require('express');
 const router=express.Router();
-const authController=require('../controllers/auth-controllers')
-const {getAllUsers,getAllContacts}=require('../controllers/admin-controllers')
-router.route('/user').get(authController,getAllUsers)
-router.route('/contact').get(authController,getAllContacts)
+const authMiddleware=require("../middleware/auth-middleware")
+const {getAllUsers,getAllContacts,getAllService}=require("../controllers/admin-controllers")
+router.route('/user').get(authMiddleware,getAllUsers)
+router.route('/contact').get(authMiddleware,getAllContacts)
+router.route('/service').get(authMiddleware,getAllService)
 module.exports=router
