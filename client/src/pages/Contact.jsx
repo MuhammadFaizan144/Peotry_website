@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { signUpandLoginBG } from '../assets'
 import { useAuth } from '../store/auth'
+import { toast } from 'react-toastify'
 const defaultContactFormData={
     username:"",
     email:"",
@@ -47,10 +48,10 @@ const handleSubmit=async(e)=>{
       setContact(defaultContactFormData)
       const data=await response.json()
       console.log(data)
-      alert('message send successfully')
+      toast.success('message send successfully')
     }
   } catch (error) {
-    alert('message not send')
+    toast.error('message not send')
     console.log('contact error ',error)
   }
 }
