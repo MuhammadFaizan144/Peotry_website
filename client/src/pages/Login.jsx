@@ -32,11 +32,10 @@ const Login = () => {
         },
         body:JSON.stringify(user),
       })
-      console.log(response)
+      console.log("login form",response)
+      const res_data=await response.json()
       if(response.ok){
-        const res_data=await response.json()
         alert("Login Successfull")
-        console.log("res from server",res_data)
         storetokenInLS(res_data.token)
         setUser({
 
@@ -47,6 +46,7 @@ const Login = () => {
       navigate('/')
       }else{
         console.log("Error in response")
+        alert(res_data.extraDetails?res_data.extraDetails:res_data.message)
       }
     } catch (error) {
       console.log("login ",error)

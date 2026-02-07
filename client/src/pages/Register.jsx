@@ -32,9 +32,13 @@ const Register = () => {
         },
         body:JSON.stringify(user),
       })
+      // console.log(response)
+
+      const res_data=await response.json();
+      console.log("res from server",res_data.message)
+
+
       if(response.ok){
-        const res_data=await response.json();
-        console.log("res from server",res_data)
         storetokenInLS(res_data.token)
         setUser(
           {username:"",
@@ -43,8 +47,9 @@ const Register = () => {
           password:"",}
         )
         navigate('/');
+      }else{
+        alert(res_data.extraDetails?res_data.extraDetails:res_data.message)
       }
-      console.log(response)
     } catch (error) {
       console.log("Register Error",error)
     }
