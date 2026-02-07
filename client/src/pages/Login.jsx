@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { signUpandLoginBG } from '../assets'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../store/auth'
+import {toast} from 'react-toastify'
 const Login = () => {
   const[user,setUser]=useState({
     email:"",
@@ -35,7 +36,7 @@ const Login = () => {
       console.log("login form",response)
       const res_data=await response.json()
       if(response.ok){
-        alert("Login Successfull")
+        toast.success("Login Successfull")
         storetokenInLS(res_data.token)
         setUser({
 
@@ -46,7 +47,7 @@ const Login = () => {
       navigate('/')
       }else{
         console.log("Error in response")
-        alert(res_data.extraDetails?res_data.extraDetails:res_data.message)
+        toast.error(res_data.extraDetails?res_data.extraDetails:res_data.message)
       }
     } catch (error) {
       console.log("login ",error)
