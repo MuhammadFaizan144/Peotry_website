@@ -7,7 +7,7 @@ export const AuthProvider=({children})=>{
     const[services,setServices]=useState([])
 
     const storetokenInLS=(serverToken)=>{
-        setToken(serverToken)
+        setToken(serverToken)//without it we need to reload page after login so logout button can show
         return localStorage.setItem('token',serverToken)
     };
 
