@@ -18,6 +18,26 @@ const AdminUser = () => {
       console.log(error)
     }
   }
+
+  const deleteUser=async(id)=>{
+    try {
+      const response=await fetch(`http://localhost:3000/api/admin/user/delete/${id}`,{
+        method:'DELETE',
+        headers:{
+          Authorization:authorizationToken
+        }
+      })
+      const data=await response.json()
+      console.log(data) 
+      if(response.ok){
+        getAllUserData()
+      }
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     getAllUserData()
   }, [])
@@ -74,7 +94,7 @@ const AdminUser = () => {
 
                 {/* Delete Button */}
                 <td className="px-6 py-4 text-center">
-                  <button className="bg-red-600 text-white px-4 py-1 rounded-md text-sm hover:bg-red-700 transition">
+                  <button onClick={()=>deleteUser(curUser._id)} className="bg-red-600 text-white px-4 py-1 rounded-md text-sm hover:bg-red-700 transition">
                     Delete
                   </button>
                 </td>
