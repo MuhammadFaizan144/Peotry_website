@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../store/auth'
+import {Link} from 'react-router-dom'
 const AdminUser = () => {
   const [user, setUser] = useState([])
   const { authorizationToken } = useAuth()
@@ -87,9 +88,9 @@ const AdminUser = () => {
 
                 {/* Edit Button */}
                 <td className="px-6 py-4 text-center">
-                  <button className="bg-blue-600 text-white px-4 py-1 rounded-md text-sm hover:bg-blue-700 transition">
+                  <Link to={`/admin/user/${curUser._id}/edit`} className="bg-blue-600 text-white px-4 py-1 rounded-md text-sm hover:bg-blue-700 transition">
                     Edit
-                  </button>
+                  </Link>
                 </td>
 
                 {/* Delete Button */}
