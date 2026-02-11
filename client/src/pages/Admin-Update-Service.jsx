@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-export const AdminUpdate = () => {
+export const AdminUpdateService = () => {
     const navigate=useNavigate()
-    const [data, setData] = useState({
-        username: "",
-        email: "",
-        phone: "",
+    const [service, setService] = useState({
+        type: "",
+        writer: "",
+        content: "",
     });
 
     const params = useParams();
@@ -18,7 +18,7 @@ export const AdminUpdate = () => {
     //   get single user data
     const getSingleUserData = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/admin/user/${params.id}`, {
+            const response = await fetch(`http://localhost:3000/api/admin/service/${params.id}`, {
                 method: "GET",
                 headers: {
                     Authorization: authorizationToken,
@@ -26,7 +26,7 @@ export const AdminUpdate = () => {
             });
             const data = await response.json();
             console.log(`users single data:  ${data}`);
-            setData(data);
+            setService(data);
 
             //   if (response.ok) {
             //     getAllUsersData();
@@ -43,26 +43,26 @@ export const AdminUpdate = () => {
     const handleInput = (e) => {
         let name = e.target.name
         let value = e.target.value
-        setData({ 
-            ...data,
+        setService({ 
+            ...service,
             [name]: value 
         })
     };
     const handleSubmit=async (e) => {
         e.preventDefault();
         try {
-            const response=await fetch(`http://localhost:3000/api/admin/user/update/${params.id}`,{
+            const response=await fetch(`http://localhost:3000/api/admin/service/update/${params.id}`,{
                 method:"PATCH",
                 headers:{
                     "Content-Type": "application/json",//importatnt for updating in bankend
                     Authorization:authorizationToken,
                 },
-                body:JSON.stringify(data),
+                body:JSON.stringify(service),
             })
             if(response.ok){
 
                 toast.success(("Update Successful"))
-                navigate('/admin/user')
+                navigate('/admin/service')
             }else{
                 toast.error(("Not Updated"))
             }
@@ -77,7 +77,7 @@ export const AdminUpdate = () => {
 
                 {/* Title */}
                 <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center border-b pb-3">
-                    Update User Data
+                    Update Contact Data
                 </h1>
 
                 {/* Form */}
@@ -93,14 +93,14 @@ export const AdminUpdate = () => {
                         </label>
                         <input
                             type="text"
-                            name="username"
-                            id="username"
+                            name="type"
+                            id="type"
                             autoComplete="off"
-                            value={data.username}
+                            value={service.type}
                             onChange={handleInput}
                             required
                             className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="Enter username"
+                            placeholder="Enter type"
                         />
                     </div>
 
@@ -110,35 +110,35 @@ export const AdminUpdate = () => {
                             htmlFor="email"
                             className="text-sm font-medium text-gray-700"
                         >
-                            Email
+                            Writer
                         </label>
                         <input
-                            type="email"
-                            name="email"
-                            id="email"
+                            type="text"
+                            name="writer"
+                            id="writer"
                             autoComplete="off"
-                            value={data.email}
+                            value={service.writer}
                             onChange={handleInput}
                             required
                             className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="Enter email"
+                            placeholder="Enter writer"
                         />
                     </div>
 
                     {/* Phone */}
                     <div className="flex flex-col gap-1">
                         <label
-                            htmlFor="phone"
+                            htmlFor="message"
                             className="text-sm font-medium text-gray-700"
                         >
-                            Mobile
+                            Content
                         </label>
                         <input
-                            type="tel"
-                            name="phone"
-                            id="phone"
+                            type="text"
+                            name="content"
+                            id="content"
                             autoComplete="off"
-                            value={data.phone}
+                            value={service.content}
                             onChange={handleInput}
                             required
                             className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -159,4 +159,4 @@ export const AdminUpdate = () => {
         </section>
     );
 };
-export default AdminUpdate;
+export default AdminUpdateService;

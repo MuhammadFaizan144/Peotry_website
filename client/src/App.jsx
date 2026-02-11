@@ -15,6 +15,8 @@ import AdminUser from './pages/Admin-User.jsx'
 import AdminContact from './pages/Admin-Contact.jsx'
 import AdminService from './pages/Admin-Service.jsx'
 import AdminUpdate from './pages/Admin-Update.jsx'
+import AdminUpdateContact from'./pages/Admin-Update-Contact.jsx'
+import AdminUpdateService from './pages/Admin-Update-Service.jsx'
 const App = () => {
   return (
     <>
@@ -34,7 +36,9 @@ const App = () => {
             <Route path='user' element={<AdminUser/>}/>
             <Route path='user/:id/edit' element={<AdminUpdate/>}/>
             <Route path='contact' element={<AdminContact/>}/>
+            <Route path='contact/:id/edit' element={<AdminUpdateContact/>}/>
             <Route path='service' element={<AdminService/>}/>
+            <Route path='service/:id/edit' element={<AdminUpdateService/>}/>
           </Route>
         </Routes>
         <Footer/>

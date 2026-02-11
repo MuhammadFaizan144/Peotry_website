@@ -71,7 +71,18 @@ const deleteContactById=async (req,res) => {
         next(error)
     }
 }
-const UpdateContactById=async (req,res) => {
+
+const getContactById=async (req,res) => {
+    try {
+        const id=req.params.id
+        const data=await Contact.findOne({_id:id})        
+        return res.status(200).json(data)
+    } catch (error) {
+        next(error)
+    }
+}
+
+const UpdateContactById=async (req,res,next) => {
     try {
         const id=req.params.id
         const updateContactData=req.body
@@ -103,6 +114,15 @@ const deleteServiceById=async (req,res) => {
         next(error)
     }
 }
+const getServiceById=async (req,res) => {
+    try {
+        const id=req.params.id
+        const data=await Service.findOne({_id:id})        
+        return res.status(200).json(data)
+    } catch (error) {
+        next(error)
+    }
+}
 const updateServiceById=async (req,res) => {
     try {
         const id=req.params.id
@@ -113,4 +133,4 @@ const updateServiceById=async (req,res) => {
         next(error)
     }
 }
-module.exports = { getAllUsers, getAllContacts, getAllService, deleteUserById, getUserById ,updateUserById,deleteContactById,deleteServiceById,UpdateContactById,updateServiceById} 
+module.exports = { getAllUsers, getAllContacts, getAllService,getServiceById, deleteUserById, getUserById ,updateUserById,deleteContactById,deleteServiceById,UpdateContactById,updateServiceById,getContactById} 

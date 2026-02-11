@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-export const AdminUpdate = () => {
+export const AdminUpdateContact = () => {
     const navigate=useNavigate()
-    const [data, setData] = useState({
+    const [contact, setContact] = useState({
         username: "",
         email: "",
-        phone: "",
+        message: "",
     });
 
     const params = useParams();
@@ -18,7 +18,7 @@ export const AdminUpdate = () => {
     //   get single user data
     const getSingleUserData = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/admin/user/${params.id}`, {
+            const response = await fetch(`http://localhost:3000/api/admin/contact/${params.id}`, {
                 method: "GET",
                 headers: {
                     Authorization: authorizationToken,
@@ -26,7 +26,7 @@ export const AdminUpdate = () => {
             });
             const data = await response.json();
             console.log(`users single data:  ${data}`);
-            setData(data);
+            setContact(data);
 
             //   if (response.ok) {
             //     getAllUsersData();
@@ -43,26 +43,26 @@ export const AdminUpdate = () => {
     const handleInput = (e) => {
         let name = e.target.name
         let value = e.target.value
-        setData({ 
-            ...data,
+        setContact({ 
+            ...contact,
             [name]: value 
         })
     };
     const handleSubmit=async (e) => {
         e.preventDefault();
         try {
-            const response=await fetch(`http://localhost:3000/api/admin/user/update/${params.id}`,{
+            const response=await fetch(`http://localhost:3000/api/admin/contact/update/${params.id}`,{
                 method:"PATCH",
                 headers:{
                     "Content-Type": "application/json",//importatnt for updating in bankend
                     Authorization:authorizationToken,
                 },
-                body:JSON.stringify(data),
+                body:JSON.stringify(contact),
             })
             if(response.ok){
 
                 toast.success(("Update Successful"))
-                navigate('/admin/user')
+                navigate('/admin/contact')
             }else{
                 toast.error(("Not Updated"))
             }
@@ -77,7 +77,7 @@ export const AdminUpdate = () => {
 
                 {/* Title */}
                 <h1 className="text-3xl font-semibold text-gray-800 mb-6 text-center border-b pb-3">
-                    Update User Data
+                    Update Contact Data
                 </h1>
 
                 {/* Form */}
@@ -96,7 +96,7 @@ export const AdminUpdate = () => {
                             name="username"
                             id="username"
                             autoComplete="off"
-                            value={data.username}
+                            value={contact.username}
                             onChange={handleInput}
                             required
                             className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -117,7 +117,7 @@ export const AdminUpdate = () => {
                             name="email"
                             id="email"
                             autoComplete="off"
-                            value={data.email}
+                            value={contact.email}
                             onChange={handleInput}
                             required
                             className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -128,17 +128,17 @@ export const AdminUpdate = () => {
                     {/* Phone */}
                     <div className="flex flex-col gap-1">
                         <label
-                            htmlFor="phone"
+                            htmlFor="message"
                             className="text-sm font-medium text-gray-700"
                         >
-                            Mobile
+                            Message
                         </label>
                         <input
                             type="tel"
-                            name="phone"
-                            id="phone"
+                            name="message"
+                            id="message"
                             autoComplete="off"
-                            value={data.phone}
+                            value={contact.message}
                             onChange={handleInput}
                             required
                             className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -159,4 +159,4 @@ export const AdminUpdate = () => {
         </section>
     );
 };
-export default AdminUpdate;
+export default AdminUpdateContact;

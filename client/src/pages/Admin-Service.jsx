@@ -93,7 +93,7 @@ const AdminService = () => {
 
                 {/* Edit Button */}
                 <td className="px-6 py-4 text-center">
-                  <Link className="bg-blue-600 text-white px-4 py-1 rounded-md text-sm hover:bg-blue-700 transition">
+                  <Link to={`/admin/service/${curUser._id}/edit`} className="bg-blue-600 text-white px-4 py-1 rounded-md text-sm hover:bg-blue-700 transition">
                     Edit
                   </Link>
                 </td>
