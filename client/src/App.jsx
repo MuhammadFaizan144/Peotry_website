@@ -14,6 +14,7 @@ import AdminLayout from './components/Layout/Admin-Layout.jsx'
 import AdminUser from './pages/Admin-User.jsx'
 import AdminContact from './pages/Admin-Contact.jsx'
 import AdminService from './pages/Admin-Service.jsx'
+import AdminUpdate from './pages/Admin-Update.jsx'
 const App = () => {
   return (
     <>
@@ -31,6 +32,7 @@ const App = () => {
 
           <Route path='/admin' element={<AdminLayout/>}>
             <Route path='user' element={<AdminUser/>}/>
+            <Route path='user/:id/edit' element={<AdminUpdate/>}/>
             <Route path='contact' element={<AdminContact/>}/>
             <Route path='service' element={<AdminService/>}/>
           </Route>

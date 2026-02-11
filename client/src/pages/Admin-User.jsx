@@ -39,6 +39,7 @@ const AdminUser = () => {
     }
   }
 
+  
   useEffect(() => {
     getAllUserData()
   }, [])
