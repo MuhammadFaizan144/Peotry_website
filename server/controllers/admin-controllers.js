@@ -60,6 +60,18 @@ const getAllContacts = async (req, res) => {
         next(error)
     }
 }
+
+const deleteContactById=async (req,res) => {
+    try {
+        const id=req.params.id
+        await Contact.deleteOne({_id:id})
+        res.status(200).json({message:"Contact Message Deleted succesfully"})
+    } catch (error) {
+        next(error)
+    }
+}
+
+// Services
 const getAllService = async (req, res) => {
     try {
         const services = await Service.find()
@@ -71,4 +83,14 @@ const getAllService = async (req, res) => {
         next(error)
     }
 }
-module.exports = { getAllUsers, getAllContacts, getAllService, deleteUserById, getUserById ,updateUserById} 
+
+const deleteServiceById=async (req,res) => {
+    try {
+        const id=req.params.id
+        await Service.deleteOne({_id:id})
+        res.status(200).json({message:"Services (poems and peotry) deleted successfully"})
+    } catch (error) {
+        next(error)
+    }
+}
+module.exports = { getAllUsers, getAllContacts, getAllService, deleteUserById, getUserById ,updateUserById,deleteContactById,deleteServiceById} 
