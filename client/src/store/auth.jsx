@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 export const AuthContext=createContext();
 
 export const AuthProvider=({children})=>{
+    const[isloading,setIsloading]=useState(true)
     const [token,setToken]=useState(localStorage.getItem('token'))
     const[user,setUser]=useState('')
     const authorizationToken=`Bearer ${token}`
@@ -25,6 +26,7 @@ export const AuthProvider=({children})=>{
     //Authentication - to get the currently loggedIN user data
     const userAuthentication=async()=>{
         try {
+            setIsloading(true)
             const response=await fetch(`http://localhost:3000/api/auth/user`,{
                 method:"GET",
                 headers:{
@@ -35,6 +37,10 @@ export const AuthProvider=({children})=>{
                 const data=await response.json()
                 console.log("user data ",data.userData)
                 setUser(data.userData)
+                setIsloading(false)
+            }else{
+                console.log("Error fetching user data")
+                setIsloading(false)
             }
         } catch (error) {
             console.log('Error fetching user data')
@@ -63,7 +69,7 @@ export const AuthProvider=({children})=>{
         userAuthentication()
     },[])
 
-    return <AuthContext.Provider value={{storetokenInLS,LogoutUser,isLoggedIn,user,services,authorizationToken}}>
+    return <AuthContext.Provider value={{storetokenInLS,LogoutUser,isLoggedIn,user,services,authorizationToken,isloading}}>
         {children}
     </AuthContext.Provider>
 }

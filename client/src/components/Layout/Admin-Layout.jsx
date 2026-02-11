@@ -1,9 +1,20 @@
 import React, { useState } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, Navigate} from 'react-router-dom'
 import { FaHome, FaRegListAlt, FaUser, FaBars, FaTimes } from "react-icons/fa"
 import { FaMessage } from "react-icons/fa6"
+import { useAuth } from '../../store/auth'
 
 const Admin = () => {
+  const{isloading,user}=useAuth()
+  console.log(user)
+  if(isloading){
+    return <h1>Loading...</h1>
+  }
+  if(!user.isAdmin){
+    return <Navigate to="/"/>
+  }
+
+
   const [open, setOpen] = useState(false)
 
   const linkClass = ({ isActive }) =>
