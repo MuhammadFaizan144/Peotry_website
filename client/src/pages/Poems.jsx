@@ -1,8 +1,12 @@
 import React from 'react'
 import { useAuth } from '../store/auth'
-
+import { useEffect } from 'react'
 const Service = () => {
-  const { services } = useAuth()
+  const { services,getServices } = useAuth()
+  useEffect(() => {
+    getServices()
+  }, [])
+  
   return (
     <>
       <section className="px-6 md:px-20 py-16 bg-gray-50">

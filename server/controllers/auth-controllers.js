@@ -1,57 +1,57 @@
 const { json } = require('zod')
-const User=require('../models/user-model')
-const bcrypt=require('bcryptjs')
-const home=async (req,res) => {
+const User = require('../models/user-model')
+const bcrypt = require('bcryptjs')
+const home = async (req, res) => {
     try {
-        res.status(200).send({message:"Welcome to the Poetry Project API"})
+        res.status(200).send({ message: "Welcome to the Poetry Project API" })
     } catch (error) {
-        res.status(500).send({message:"Internal Server Error"})
+        res.status(500).send({ message: "Internal Server Error" })
     }
 }
-const register=async (req,res) => {
+const register = async (req, res) => {
     // Registration logic here
     try {
-        const{username,email,phone,password}=req.body;
-        const UserExists=await User.findOne({email})
+        const { username, email, phone, password } = req.body;
+        const UserExists = await User.findOne({ email })
 
-        if(UserExists){
-            return res.status(400).json({message:"User already exists"})
+        if (UserExists) {
+            return res.status(400).json({ message: "User already exists" })
         }
-            const userCreated=await User.create({
-                username,
-                email,
-                phone,
-                password
-            })
-            res.status(201).json({
-                message:"registration successful",
-                token:await userCreated.generateToken(),
-                
-                userId:userCreated._id.toString()
-            })
+        const userCreated = await User.create({
+            username,
+            email,
+            phone,
+            password
+        })
+        res.status(201).json({
+            message: "registration successful",
+            token: await userCreated.generateToken(),
+
+            userId: userCreated._id.toString()
+        })
     } catch (error) {
-        res.status(500).send({message:"Internal Server Error"})
+        res.status(500).send({ message: "Internal Server Error" })
     }
 }
-const login=async (req,res) => {
+const login = async (req, res) => {
     try {
-        const {email,password}=req.body
-        const UserExists=await User.findOne({email})
+        const { email, password } = req.body
+        const UserExists = await User.findOne({ email })
         console.log(UserExists)
-        if(!UserExists){
-            return res.status(400).json({message:"User does not exist"})
+        if (!UserExists) {
+            return res.status(400).json({ message: "User does not exist" })
         }
 
-        const user=await UserExists.comparePassword(password)
-        
-        if(user){
+        const user = await UserExists.comparePassword(password)
+
+        if (user) {
             res.status(200).json({
-                message:"Login Successful",
-                token:await UserExists.generateToken(),
-                userId:UserExists._id.toString()
+                message: "Login Successful",
+                token: await UserExists.generateToken(),
+                userId: UserExists._id.toString()
             })
-        }else{
-            res.status(401).json({message:"Invalid Credentials"})
+        } else {
+            res.status(401).json({ message: "Invalid Credentials" })
         }
     } catch (error) {
         // res.status(500).send({message:"Internal Server Error"})
@@ -60,13 +60,13 @@ const login=async (req,res) => {
 }
 
 
-const user =async(req,res)=>{
+const user = async (req, res) => {
     try {
-        const userData=req.user
+        const userData = req.user
         console.log(userData)
-        res.status(200).json({userData})
+        res.status(200).json({ userData })
     } catch (error) {
-        console.log('error from user route ',error)
+        console.log('error from user route ', error)
     }
 }
-module.exports={home,register,login,user}
+module.exports = { home, register, login, user }

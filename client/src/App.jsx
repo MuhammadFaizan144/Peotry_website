@@ -17,6 +17,7 @@ import AdminService from './pages/Admin-Service.jsx'
 import AdminUpdate from './pages/Admin-Update.jsx'
 import AdminUpdateContact from'./pages/Admin-Update-Contact.jsx'
 import AdminUpdateService from './pages/Admin-Update-Service.jsx'
+import AddPoems from './pages/Add-Poems.jsx'
 const App = () => {
   return (
     <>
@@ -27,6 +28,7 @@ const App = () => {
           <Route path='/about' element={<About/>} />
           <Route path='/contact' element={<Contact/>} />
           <Route path='/poems' element={<Poem/>} />
+          <Route path='/add' element={<AddPoems/>}/>
           <Route path='/register' element={<Register/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/logout' element={<Logout/>}/>

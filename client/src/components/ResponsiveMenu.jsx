@@ -1,8 +1,10 @@
 import React from 'react'
 import { navLinks } from './navbardata.js'
 import { NavLink } from 'react-router-dom'
-
+import { useAuth } from '../store/auth.jsx'
 const ResponsiveMenu = ({ open }) => {
+  const { isLoggedIn } = useAuth()
+
   if (!open) return null
 
   return (
@@ -47,9 +49,16 @@ const ResponsiveMenu = ({ open }) => {
 
           </li>
 
-          <li>
-            <NavLink to="/register" className='bg-red-500 text-white py-2 px-4 rounded mr-4 hover:bg-red-600'>Register</NavLink>
-            <NavLink to="/login" className='bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300'>Login</NavLink>
+          <li className='flex gap-3'>
+            {isLoggedIn ?
+              <><NavLink to='/logout' className='bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300'>Logout</NavLink>
+                <NavLink to="/add" className='bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300'>Add</NavLink></>
+              :
+              <>
+                <NavLink to='/register' className='bg-red-500 text-white py-2 px-4 rounded mr-4 hover:bg-red-600'>Register</NavLink>
+                <NavLink to='/login' className='bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300'>Login</NavLink>
+
+              </>}
           </li>
         </ul>
       </div>
