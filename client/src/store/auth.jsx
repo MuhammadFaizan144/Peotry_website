@@ -2,11 +2,14 @@ import { createContext, useContext, useEffect, useState } from "react";
 export const AuthContext=createContext();
 
 export const AuthProvider=({children})=>{
+
+
     const[isloading,setIsloading]=useState(true)
     const [token,setToken]=useState(localStorage.getItem('token'))
     const[user,setUser]=useState('')
     const authorizationToken=`Bearer ${token}`
     const[services,setServices]=useState([])
+    const API=import.meta.env.VITE_APP_URI_API;
 
     const storetokenInLS=(serverToken)=>{
         setToken(serverToken)//without it we need to reload page after login so logout button can show
@@ -27,7 +30,7 @@ export const AuthProvider=({children})=>{
     const userAuthentication=async()=>{
         try {
             setIsloading(true)
-            const response=await fetch(`http://localhost:3000/api/auth/user`,{
+            const response=await fetch(`${API}/api/auth/user`,{
                 method:"GET",
                 headers:{
                     Authorization:authorizationToken,
@@ -50,7 +53,7 @@ export const AuthProvider=({children})=>{
 
     const getServices=async () => {
         try {
-            const response=await fetch(`http://localhost:3000/api/data/poem`,{
+            const response=await fetch(`${API}/api/data/poem`,{
                 method:'GET',
             })
             if(response.ok){
@@ -69,7 +72,7 @@ export const AuthProvider=({children})=>{
         userAuthentication()
     },[])
 
-    return <AuthContext.Provider value={{storetokenInLS,LogoutUser,isLoggedIn,user,services,authorizationToken,isloading}}>
+    return <AuthContext.Provider value={{storetokenInLS,LogoutUser,isLoggedIn,user,services,authorizationToken,isloading,API}}>
         {children}
     </AuthContext.Provider>
 }

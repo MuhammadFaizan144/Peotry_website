@@ -13,12 +13,12 @@ export const AdminUpdate = () => {
 
     const params = useParams();
     console.log("params single user: ", params);
-    const { authorizationToken } = useAuth();
+    const { authorizationToken ,API} = useAuth();
 
     //   get single user data
     const getSingleUserData = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/admin/user/${params.id}`, {
+            const response = await fetch(`${API}/api/admin/user/${params.id}`, {
                 method: "GET",
                 headers: {
                     Authorization: authorizationToken,
@@ -51,7 +51,7 @@ export const AdminUpdate = () => {
     const handleSubmit=async (e) => {
         e.preventDefault();
         try {
-            const response=await fetch(`http://localhost:3000/api/admin/user/update/${params.id}`,{
+            const response=await fetch(`${API}/api/admin/user/update/${params.id}`,{
                 method:"PATCH",
                 headers:{
                     "Content-Type": "application/json",//importatnt for updating in bankend

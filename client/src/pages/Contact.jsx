@@ -12,7 +12,7 @@ const Contact = () => {
   const[contact,setContact]=useState(defaultContactFormData)
 
   const[userData,setUserData]=useState(true)
-  const{user}=useAuth()
+  const{user,API}=useAuth()
 
   if(userData && user){
     setContact({
@@ -37,7 +37,7 @@ const handleSubmit=async(e)=>{
   e.preventDefault();
   console.log(contact)
   try {
-    const response=await fetch(`http://localhost:3000/api/form/contact`,{
+    const response=await fetch(`${API}/api/form/contact`,{
       method:"POST",
       headers:{
         'Content-Type':'application/json',

@@ -5,10 +5,10 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 const AdminContact = () => {
   const[contact,setContact]=useState([])
-  const { authorizationToken}=useAuth()
+  const { authorizationToken,API}=useAuth()
   const getAllContactData=async () => {
     try {
-      const response=await fetch(`http://localhost:3000/api/admin/contact`,{
+      const response=await fetch(`${API}/api/admin/contact`,{
         method:"GET",
         headers:{
           Authorization:authorizationToken
@@ -28,7 +28,7 @@ const AdminContact = () => {
 
   const deleteContact=async (id) => {
     try {
-      const response=await fetch(`http://localhost:3000/api/admin/contact/delete/${id}`,{
+      const response=await fetch(`${API}/api/admin/contact/delete/${id}`,{
         method:"DELETE",
         headers:{
           Authorization:authorizationToken

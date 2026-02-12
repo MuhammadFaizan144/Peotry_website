@@ -4,13 +4,13 @@ import { useAuth } from '../store/auth'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 const AdminService = () => {
-  const {authorizationToken}=useAuth()
+  const {authorizationToken,API}=useAuth()
 
   const[services,setServices]=useState([])
 
   const getAllServicesData=async () => {
     try {
-      const response=await fetch(`http://localhost:3000/api/admin/service`,{
+      const response=await fetch(`${API}/api/admin/service`,{
         method:"GET",
         headers:{
           Authorization:authorizationToken
@@ -28,7 +28,7 @@ const AdminService = () => {
  
   const deleteServices=async (id) => {
     try{
-      const response=await fetch(`http://localhost:3000/api/admin/service/delete/${id}`,{
+      const response=await fetch(`${API}/api/admin/service/delete/${id}`,{
         method:"DELETE",
         headers:{
           Authorization:authorizationToken

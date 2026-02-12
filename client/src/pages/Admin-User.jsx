@@ -3,10 +3,10 @@ import { useAuth } from '../store/auth'
 import {Link} from 'react-router-dom'
 const AdminUser = () => {
   const [user, setUser] = useState([])
-  const { authorizationToken } = useAuth()
+  const { authorizationToken ,API} = useAuth()
   const getAllUserData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/admin/user`, {
+      const response = await fetch(`${API}/api/admin/user`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken
@@ -22,7 +22,7 @@ const AdminUser = () => {
 
   const deleteUser=async(id)=>{
     try {
-      const response=await fetch(`http://localhost:3000/api/admin/user/delete/${id}`,{
+      const response=await fetch(`${API}/api/admin/user/delete/${id}`,{
         method:'DELETE',
         headers:{
           Authorization:authorizationToken
