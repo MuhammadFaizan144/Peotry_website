@@ -12,7 +12,7 @@ const AddPoems = () => {
         writer: "",
         content: "",
     })
-    const { API } = useAuth()
+    const { API,  authorizationToken } = useAuth()
     const handleInput = (e) => {
         console.log(e)
         let name = e.target.name
@@ -32,12 +32,13 @@ const AddPoems = () => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: authorizationToken,
+
                 },
                 body: JSON.stringify(add)
             })
             const res_data = await response.json();
             console.log("res from server", res_data)
-
             if (response.ok) {
 
                 setAdd(

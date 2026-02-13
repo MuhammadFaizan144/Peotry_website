@@ -20,5 +20,5 @@ router.route('/service/:id').get(authMiddleware,adminMiddleware,getServiceById)
 router.route('/service/update/:id').patch(authMiddleware,adminMiddleware,updateServiceById)
 router.route('/service/delete/:id').delete(authMiddleware,adminMiddleware,deleteServiceById)
 //Add Services
-router.route('/service/add').post(addServices)
+router.route('/service/add').post(authMiddleware,addServices)
 module.exports=router 
