@@ -34,7 +34,7 @@ const Navbar = () => {
                 <NavLink to='/about' className='inline-block py-1 px-3 hover:text-red-500 font-semibold' >About</NavLink>
               </li>
               <li>
-                <NavLink to='/poems' className='inline-block py-1 px-3 hover:text-red-500 font-semibold' >Peom</NavLink>
+                <NavLink to='/poems' className='inline-block py-1 px-3 hover:text-red-500 font-semibold' >Peom & Poetry</NavLink>
               </li>
               <li>
                 <NavLink to='/contact' className='inline-block py-1 px-3 hover:text-red-500 font-semibold' >Contact</NavLink>

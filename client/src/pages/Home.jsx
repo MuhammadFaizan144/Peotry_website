@@ -1,11 +1,13 @@
 import React from 'react'
 import { peotrycontent, allama } from '../assets/index.js'
 import { NavLink } from 'react-router-dom'
+import HeroSlider from '../components/HeroSlider.jsx'
 const Home = () => {
   return (
     <>
       {/* Peot Home */}
-      <div className=" grid grid-cols-2 max-md:grid-cols-1 justify-center items-center gap-[190px] max-md:gap-[90px] px-10 max-md:px-5 bg-white">
+      <HeroSlider/>
+      <div className="mt-10 grid grid-cols-2 max-md:grid-cols-1 justify-center items-center gap-[190px] max-md:gap-[90px] px-10 max-md:px-5 bg-white">
         <div className="Content ">
           <div className='Content-letters flex flex-col gap-2'>
             <p className='text-5xl italic font-serif'>Lafz wahi zinda hote hain jo rooh ko jaga dein, baqi sirf awaaz hoti hai.</p>
@@ -22,7 +24,7 @@ const Home = () => {
       </div>
 
       {/* Poet */}
-      <div className="h-100vh grid grid-cols-2 max-md:grid-cols-1 gap-8 items-center my-20 px-10 max-md:px-5  bg-white">
+      <div className=" h-100vh grid grid-cols-2 max-md:grid-cols-1 gap-8 items-center my-20 px-10 max-md:px-5  bg-white">
         <div className="Content-image order-1 max-md:order-2">
           <img src={peotrycontent} alt="pen on paper of poems" className='h-[500px]' />
         </div>
